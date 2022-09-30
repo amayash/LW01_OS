@@ -11,7 +11,6 @@ namespace LW01
         public string? Name;
         public string? Type;
         public int? Value;
-        string error = "";
         public Arg(string? Name, string? Type, int? Value)
         {
             this.Name = Name;
@@ -20,28 +19,26 @@ namespace LW01
         }
         public Arg(params int[] f)
         {
-            error += "Error. Not enough parameters";
+
         }
         public override string ToString()
         {
-            if (!string.IsNullOrWhiteSpace(error))
-                return "\n\t\t\t\t\t" + error + "\n\t\t\t\t\tName: " + Name + "\tType: " + Type + "\tValue: " + Value + "\n";
+            StringBuilder s = new StringBuilder();
+
             if (string.IsNullOrWhiteSpace(Name))
             {
-                error+= "Error. Name is Empty";
-                return "\n\t\t\t\t\t" + error + "\n\t\t\t\t\tName: " + Name + "\tType: " + Type + "\tValue: " + Value + "\n";
+                s.Append("Error. Name is Empty\n");
             }
             if (string.IsNullOrWhiteSpace(Type))
             {
-                error += "Error. Type is Empty";
-                return "\n\t\t\t\t\t" + error + "\n\t\t\t\t\tName: " + Name + "\tType: " + Type + "\tValue: " + Value + "\n";
+                s.Append("Error. Type is Empty\n");
             }
-            if (Value==null)
+            if (Value == null)
             {
-                error += "Error. Value is Empty";
-                return "\n\t\t\t\t\t" + error + "\n\t\t\t\t\tName: " + Name + "\tType: " + Type + "\tValue: " + Value + "\n";
+                s.Append("Error. Value is Empty\n");
             }
-            return "\tName: " + Name + "\tType: " + Type + "\tValue: " + Value + "\n";
+
+            return s.ToString() + "\nName: " + Name + "\tType: " + Type + "\tValue: " + Value + "\n";
         }
     }
 }
